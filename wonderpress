@@ -129,25 +129,6 @@ reset() {
 	menu
 }
 
-set_permissions() {
-	WWW_USER=`ps aux | grep -v root | grep apache | cut -d\  -f1 | sort | uniq`
-	WWW_GROUP=`ps axo user,group,comm | egrep '(apache|httpd)' | grep -v ^root | uniq | cut -d\  -f 2`
-	 
-	# reset to safe defaults
-	find $dir -exec chown ${WWW_USER}:${WWW_GROUP} {} \;
-	find $dir -type d -exec chmod 755 {} \;
-	find $dir -type f -exec chmod 644 {} \;
-	 
-	# allow wordpress to manage wp-config.php (but prevent world access)
-	chgrp ${WWW_GROUP} $dir/wp-config.php
-	chmod 660 $dir/wp-config.php
-	 
-	# allow wordpress to manage wp-content
-	find $dir/wp-content -exec chgrp ${WWW_GROUP} {} \;
-	find $dir/wp-content -type d -exec chmod 775 {} \;
-	find $dir/wp-content -type f -exec chmod 664 {} \;
-}
-
 setup() {
 	cd $dir
 	
@@ -232,14 +213,16 @@ setup() {
 }
 
 function sniff_code() {
-	echo "Sniffing..."
+
+	echo "Sniffing yer codes..."
 	./vendor/bin/phpcs ./wp-content/themes/. -p -v --colors --standard=WordPress-Core --ignore=*/node_modules/*,*/css/*,*/js/*
 
-	menu
-}
-
-function fix_sniffed_code() {
-	./vendor/bin/phpcbf ./wp-content/themes/. -p -v --colors --standard=WordPress-Core --ignore=*/node_modules/*,*/css/*,*/js/*
+	read -p "Would you like to automatically fix as many of these as possible? " -n 1 -r
+	echo    # (optional) move to a new line
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		./vendor/bin/phpcbf ./wp-content/themes/. -p -v --colors --standard=WordPress-Core --ignore=*/node_modules/*,*/css/*,*/js/*
+	fi
 
 	menu
 }
@@ -253,24 +236,20 @@ function menu() {
 	fi
 	divider
 	echo "What would you like to do?"
-	echo "[1] setup"
-	echo "[2] sniff code"
-	echo "[3] auto-fix sniff errors"
-	echo "[4] install a plugin"
-	echo "[5] reset permissions"
-	echo "[6] reinstall"
-	echo "[7] exit"
+	echo "[1] Setup WordPress"
+	echo "[2] Sniff Code"
+	echo "[3] Install a Plugin"
+	echo "[4] Reinstall WonderPress"
+	echo "[5] Exit"
 	while true; do
 	    read choice
 	    case $choice in
 	        1) setup; menu; break;;
 			2) sniff_code; break;;
-			3) fix_sniffed_code; break;;
-			4) install_plugin; break;;
-			5) set_permissions; break;;
-	        6) reset; exit;;
-	        7) echo "Later bro."; exit;;
-	        *) echo "DONKEY PUNCH 🐴. Please follow the instructions, dingaling";;
+			3) install_plugin; break;;
+	        4) reset; exit;;
+	        5) echo "✌️"; exit;;
+	        *) echo "Invalid selection. Please follow the instructions, dingaling";;
 	    esac
 	done
 }

@@ -1,4 +1,4 @@
-name: WordPress
+name: Wonderpress
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Codesniff the theme...
+    - name: Codesniff all themes...
       run: |
         composer create-project wp-coding-standards/wpcs --no-dev
         composer require --dev dealerdirect/phpcodesniffer-composer-installer
