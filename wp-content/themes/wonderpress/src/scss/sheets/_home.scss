@@ -1,0 +1,322 @@
+.home-about {
+	position:relative;
+
+	.home-about-product-preview {
+		background-image:url('../images/home-product-preview.png');
+		background-repeat:no-repeat;
+		background-size:contain;
+		background-position:top center;
+		height:511px;
+		position:relative;
+		z-index:1;
+
+		@include breakpoint(tablet-screen) {
+			width:50%;
+			height:100%;
+			position:absolute;
+			top:0;
+			left:0;
+			z-index:1;
+		}
+	}
+
+	.home-about-product-preview-gradient {
+		background-image:url('../images/home-product-preview-gradient.png');
+		background-repeat:no-repeat;
+		background-size:contain;
+		background-position:center center;
+		height:511px;
+		position:absolute;
+		top:0;
+		left:0;
+		right:0;
+		z-index:0;
+
+		@include breakpoint(tablet-screen) {
+			width:50%;
+			height:100%;
+			right:auto;
+		}
+	}
+
+	.home-about-stores {
+		font-size:0;
+		text-align:center;
+		margin-top:40px;
+
+		@include breakpoint(tablet-screen) {
+			text-align:left;
+		}
+
+		.home-about-store {
+			background-repeat:no-repeat;
+			background-position:center center;
+			background-size:contain;
+			display:inline-block;
+			height:40px;
+			margin-left:24px;
+
+			&:first-child {
+				margin-left:0;
+			}
+
+			&.apple {
+				background-image:url('../images/theme-app-store-icon.png');
+				width:120px;
+			}
+
+			&.google {
+				background-image:url('../images/theme-google-play-icon.png');
+				width:135px;
+			}
+		}
+	}
+
+	.home-about-text {
+		background-image:url('../images/home-about-logo.png');
+		background-repeat:no-repeat;
+		background-size:195px 212px;
+		background-position:top center;
+		padding-top:240px;
+		margin-top:48px;
+
+		@include breakpoint(tablet-screen) {
+			background-size:259px 287px;
+			margin-top:0;
+			padding-top:310px;
+		}
+
+	}
+}
+
+.home-form-area {
+	padding:140px 0 32px;
+
+	@include breakpoint(tablet-screen) {
+		padding:165px 0;
+	}
+
+	.home-form-area-content {
+		@include breakpoint(tablet-screen) {
+			padding-top:62px;
+		}
+
+		.home-form-area-content-text {
+			margin-top:19px;
+		}
+	}
+
+	.home-form-area-form {
+		background: $white;
+		box-shadow: 0 10px 20px 0 rgba(0,0,0,0.20);
+		padding:35px 54px 44px;
+		margin-top:32px;
+		border-radius: 2px;
+
+		height:555px;
+
+		@include breakpoint(tablet-screen) {
+			margin-top:0;
+		}
+	}
+
+	.home-form-area-socials {
+		text-align:center;
+		margin-top:38px;
+
+		@include breakpoint(tablet-screen) {
+			text-align:left;
+		}
+
+		.home-form-area-social {
+			background-repeat:no-repeat;
+			background-size:contain;
+			background-position:center center;
+			display:inline-block;
+			height:32px;
+			margin-left:20px;
+
+			@include breakpoint(tablet-screen) {
+				height:20px;
+			}
+
+			&:first-child {
+				margin-left:0;
+			}
+
+
+			&.facebook {
+				background-image:url('../images/facebook-icon.svg');
+				width:38.4px;
+
+				@include breakpoint(tablet-screen) {
+					width:24px;
+				}
+			}
+
+			&.instagram {
+				background-image:url('../images/instagram-icon.svg');
+				width:32px;
+
+				@include breakpoint(tablet-screen) {
+					width:20px;
+				}
+			}
+
+			&.twitter {
+				background-image:url('../images/twitter-icon.svg');
+				width:38.4px;
+
+				@include breakpoint(tablet-screen) {
+					width:24px;
+				}
+			}
+		}
+	}
+}
+
+.home-hero {
+	background-image:url('../images/home-hero-bg.jpg');
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:bottom center;
+	padding:134px 0 41px;
+
+	@include breakpoint(tablet-screen) {
+		padding:230px 0 178px;
+	}
+
+	.home-hero-hashtag {
+		color:$orange;
+		font-size:20px;
+		font-weight:700;
+		letter-spacing:0;
+		line-height:24px;
+		text-align:center;
+		margin-top:24px;
+
+		@include breakpoint(tablet-screen) {
+			font-size:28px;
+			line-height:24px;
+		}
+	}
+
+	.home-hero-sub-headline {
+		margin-top:22px;
+	}
+}
+
+.home-quote {
+	padding:151px 0 135px;
+
+	@include breakpoint(tablet-screen) {
+		padding:137px 0 248px;
+	}
+
+	.home-quote-text {
+		margin-top:19px;
+	}
+}
+
+.home-steps-bullets {
+	@include breakpoint(tablet-screen) {
+		padding-top:65px;
+	}
+
+	.home-steps-bullet {
+		background-repeat:no-repeat;
+		background-position:top center;
+		background-size:140px auto;
+		padding:180px 30px 0;
+		margin-top:53px;
+
+		@include breakpoint(tablet-screen) {
+			background-size:190px auto;
+			padding:210px 30px 0;
+			margin-top:0;
+		}
+
+		&.step-1 {
+			background-image:url('../images/home-steps-1.png');
+		}
+
+		&.step-2 {
+			background-image:url('../images/home-steps-2.png');
+		}
+
+		&.step-3 {
+			background-image:url('../images/home-steps-3.png');
+		}
+
+		.home-steps-bullet-text {
+			margin-top:9px;
+		}
+	}
+}
+
+.home-steps-header {
+	border-top:2px #F1F0F0 solid;
+	margin-bottom:45px;
+	position:relative;
+
+	@include breakpoint(tablet-screen) {
+		margin-bottom:61.5px;
+	}
+
+	.home-steps-header-content {
+		height:96px;
+		position:absolute;
+		top:50%;
+		left:0;
+		right:0;
+		@include transform(translateY(-50%));
+
+		@include breakpoint(tablet-screen) {
+			height:123px;
+		}
+	}
+
+	.home-steps-header-content-payload {
+		background-color:$black;
+		background-image:url('../images/home-steps-header-bg.svg');
+		background-repeat:no-repeat;
+		background-position:25px center;
+		background-size:39px 65px;
+		text-align:left;
+		padding:0 22px 0 78px;
+
+		@include breakpoint(tablet-screen) {
+			background-position:65px 20px;
+			background-size:auto 85px;
+			padding:0 67px 0 137px;
+		}
+	}
+
+	.home-steps-header-number {
+		display:none;
+	}
+}
+
+.home-tunnel-area {
+	background-image:url('../images/home-tunnel-bg.png');
+	background-repeat:no-repeat;
+	background-size:1380px;
+	background-position:-308px 715px;
+
+	@include breakpoint(tablet-screen) {
+		background-size:cover;
+		background-position:center 85px;
+	}
+}
+
+.home-world-map-area {
+	background-image:url('../images/home-world-map.png');
+	background-size:800px auto;
+	background-position:0 bottom;
+	background-repeat:no-repeat;
+
+	@include breakpoint(tablet-screen) {
+		background-size:contain;
+		background-position:bottom center;
+	}
+}

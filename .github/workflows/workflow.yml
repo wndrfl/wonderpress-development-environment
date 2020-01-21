@@ -1,0 +1,15 @@
+name: WordPress
+
+on: [push]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Codesniff the theme...
+      run: |
+        composer create-project wp-coding-standards/wpcs --no-dev
+        composer require --dev dealerdirect/phpcodesniffer-composer-installer
+        ./vendor/bin/phpcs -i
+        ./vendor/bin/phpcs ./wp-content/themes/. -p -n -v --standard=WordPress-Core --ignore=*/node_modules/*,*/js/*

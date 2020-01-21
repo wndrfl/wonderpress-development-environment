@@ -1,0 +1,278 @@
+#!/bin/sh
+
+dir="`dirname "$0"`"
+
+# ENV VARIABLES
+# Check for a .env file
+_read_var() {
+  if [ -z "$1" ]; then
+    echo "environment variable name is required"
+    return
+  fi
+
+  local ENV_FILE='.env'
+  if [ ! -z "$2" ]; then
+    ENV_FILE="$2"
+  fi
+
+  local VAR=$(grep $1 "$ENV_FILE" | xargs)
+  IFS="=" read -ra VAR <<< "$VAR"
+  echo ${VAR[1]}
+}
+
+# DEBUG=true
+DEBUG=$(_read_var DEBUG)
+
+
+_back_to_root() {
+	cd $dir
+}
+
+_install_plugin() {
+	PLUGINURL="$1"
+	start="`pwd`"
+	cd $dir/wp-content/plugins
+	curl -L -o zipped-plugin.zip $PLUGINURL
+	unzip -q zipped-plugin.zip
+	rm -rf zipped-plugin.zip
+	_back_to_root
+
+	echo "Cool. We installed that plugin."
+
+	menu
+}
+
+_install_theme() {
+	echo "$1"
+	THEMEURL="$1"
+	start="`pwd`"
+	cd $dir/wp-content/themes
+	curl -L -o zipped-theme.zip $THEMEURL
+	unzip -q zipped-theme.zip
+	rm -rf zipped-theme.zip
+	_back_to_root
+
+	echo "Cool. We installed that theme."
+
+	menu
+}
+
+_cleanup() {
+	divider
+	echo "Cleaning up unnecessary files..."
+	rm -rf README.md
+	rm -rf wp-config-sample.php
+	echo "All clean."
+	menu
+}
+
+divider() {
+	echo ""
+	echo "*********************"
+	echo ""
+}
+
+goodbye() {
+	divider
+	echo "All done. Goodbye!"
+	divider
+}
+
+# install_skellie() {
+# 	_install_theme "https://github.com/Wndrfl/Skellie/archive/master.zip"
+# }
+
+install_plugin() {
+	divider
+	echo "Which plugin would you like to install?"
+	echo "[1] ACF PRO"
+	echo "[2] Yoast SEO"
+	echo "[3] W3 Total Cache"
+	echo "[4] Smush"
+	echo "[6] exit"
+
+	read choice
+    case $choice in
+        1) _install_plugin "https://github.com/wp-premium/advanced-custom-fields-pro/archive/master.zip"; install_plugin; break;;
+		2) _install_plugin "http://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip"; install_plugin; break;;
+		3) _install_plugin "https://downloads.wordpress.org/plugin/w3-total-cache.latest-stable.zip"; install_plugin; break;;
+		4) _install_plugin "https://downloads.wordpress.org/plugin/wp-smushit.3.4.2.zip"; install_plugin; break;;
+        5) reset; break;;
+        6) echo "Later bro."; goodbye; exit;;
+        *) echo "DONKEY PUNCH. Please follow the instructions, dingaling";;
+    esac
+}
+
+install_wp_cli() {
+	divider
+	echo "Installing WP CLI..."
+	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+	chmod +x wp-cli.phar
+	sudo mv wp-cli.phar /usr/local/bin/wp
+	echo "Installed."
+}
+
+reset() {
+	divider
+	divider
+	divider
+	echo "Resetting WonderPress..."
+	echo "HOLD ON TO YOUR BUTTS"
+	rm -rf $dir/*
+	curl -L -o wonderpress.zip https://github.com/Wndrfl/WonderPress/archive/master.zip
+	unzip -q wonderpress.zip
+	rm wonderpress.zip
+	cp -R WonderPress-master/* $dir/
+	rm -rf WonderPress-master/*
+	rm -rf WonderPress-master
+	echo "WonderPress is back at square one."
+	menu
+}
+
+set_permissions() {
+	WWW_USER=`ps aux | grep -v root | grep apache | cut -d\  -f1 | sort | uniq`
+	WWW_GROUP=`ps axo user,group,comm | egrep '(apache|httpd)' | grep -v ^root | uniq | cut -d\  -f 2`
+	 
+	# reset to safe defaults
+	find $dir -exec chown ${WWW_USER}:${WWW_GROUP} {} \;
+	find $dir -type d -exec chmod 755 {} \;
+	find $dir -type f -exec chmod 644 {} \;
+	 
+	# allow wordpress to manage wp-config.php (but prevent world access)
+	chgrp ${WWW_GROUP} $dir/wp-config.php
+	chmod 660 $dir/wp-config.php
+	 
+	# allow wordpress to manage wp-content
+	find $dir/wp-content -exec chgrp ${WWW_GROUP} {} \;
+	find $dir/wp-content -type d -exec chmod 775 {} \;
+	find $dir/wp-content -type f -exec chmod 664 {} \;
+}
+
+setup() {
+	cd $dir
+	
+	if [ $DEBUG != "true" ]; then
+		echo "Separating codebase from cloned repository...";
+		rm -rf .git;
+	else
+		echo "🚨 DEBUG: .git not deleted 🚨"
+	fi
+	
+	echo "Checking for WP CLI..."
+	if ! [ -x "$(command -v wp)" ]; then
+		echo "Installing WP CLI..."
+		install_wp_cli
+	fi
+	echo "WP CLI installed 🤤"
+
+	# DOWNLOAD WP
+
+	wp core download --skip-content --force
+
+
+	# CONFIG WP
+
+	while true; do
+
+		echo "What's the database hostname?"
+		read db_host
+
+		echo "What's the database name?"
+		read db_name
+
+		echo "What's the database user?"
+		read db_user
+
+		echo "What's the database password?"
+		read db_password
+
+		if wp config create --dbhost=$db_host --dbname=$db_name --dbuser=${db_user:-root} --dbpass=$db_password --force; then
+			break
+		else
+			echo "Somethings wrong with your database creds... try again."
+		fi
+
+	done
+
+
+	# INSTALL WP
+
+	while true; do
+		echo "What's your development url?"
+		read local_url
+
+		echo "What's the name of the site?"
+		read site_title
+
+		echo "What's the admin user? (default: admin)"
+		read admin_user
+
+		echo "What's the admin password? (default: supersecure)"
+		read admin_password
+
+		echo "What's the admin email?"
+		read admin_email
+
+		if wp core install --url=$local_url --title=$site_title --admin_user=${db_user:-admin} --admin_password=${db_user:-supersecure} --admin_email=$admin_email; then
+			break
+		else
+			echo "Somethings wrong with the install. Fix it, friend. 😢"
+		fi
+	done
+
+	echo "You're running WordPress version $(wp core version) ... giddyup"
+
+	# Installing
+	echo "Installing code sniffer packages..."
+	composer create-project wp-coding-standards/wpcs --no-dev
+	composer require --dev dealerdirect/phpcodesniffer-composer-installer
+	./vendor/bin/phpcs -i
+
+	menu
+}
+
+function sniff_code() {
+	echo "Sniffing..."
+	./vendor/bin/phpcs ./wp-content/themes/. -p -v --colors --standard=WordPress-Core --ignore=*/node_modules/*,*/css/*,*/js/*
+
+	menu
+}
+
+function fix_sniffed_code() {
+	./vendor/bin/phpcbf ./wp-content/themes/. -p -v --colors --standard=WordPress-Core --ignore=*/node_modules/*,*/css/*,*/js/*
+
+	menu
+}
+
+function menu() {
+
+	divider
+	echo "✨WONDERPRESS MAIN MENU✨"
+	if [ $DEBUG == "true" ]; then
+		echo "🚨🚨🚨🚨 DEBUG MODE 🚨🚨🚨🚨"
+	fi
+	divider
+	echo "What would you like to do?"
+	echo "[1] setup"
+	echo "[2] sniff code"
+	echo "[3] auto-fix sniff errors"
+	echo "[4] install a plugin"
+	echo "[5] reset permissions"
+	echo "[6] reinstall"
+	echo "[7] exit"
+	while true; do
+	    read choice
+	    case $choice in
+	        1) setup; menu; break;;
+			2) sniff_code; break;;
+			3) fix_sniffed_code; break;;
+			4) install_plugin; break;;
+			5) set_permissions; break;;
+	        6) reset; exit;;
+	        7) echo "Later bro."; exit;;
+	        *) echo "DONKEY PUNCH 🐴. Please follow the instructions, dingaling";;
+	    esac
+	done
+}
+
+menu
