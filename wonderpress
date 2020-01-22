@@ -37,7 +37,7 @@ _install_plugin() {
 	rm -rf zipped-plugin.zip
 	_back_to_root
 
-	echo "Cool. We installed that plugin."
+	echo "👍 Cool. We installed that plugin."
 
 	menu
 }
@@ -52,7 +52,7 @@ _install_theme() {
 	rm -rf zipped-theme.zip
 	_back_to_root
 
-	echo "Cool. We installed that theme."
+	echo "👍 Cool. We installed that theme."
 
 	menu
 }
@@ -78,9 +78,9 @@ goodbye() {
 	divider
 }
 
-# install_skellie() {
-# 	_install_theme "https://github.com/Wndrfl/Skellie/archive/master.zip"
-# }
+install_skellie() {
+	_install_theme "https://github.com/Wndrfl/Skellie/archive/master.zip"
+}
 
 install_plugin() {
 	divider
