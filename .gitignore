@@ -1,9 +1,6 @@
-# Wonderpress specific
-.env
-/wpcs
-composer.json
-composer.lock
-/vendor
+# WonderPress specific
+vendor
+node_modules
 
 # Misc extensions
 wp*~

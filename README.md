@@ -1,52 +1,83 @@
-# ✨Wonderpress
+# Project Name / sitename.tld
 
-## Overview
-WonderPress is a high-level development tool aimed at making the management of a WordPress development environment easier.
+Project description and short intro goes here.
 
-This isn't about theme development, its about WordPress environment management. If you want to make theme development easier, check out our boilerplate theme.
+## Environments
 
-![](https://media.giphy.com/media/tVBPgQv3AO3AI/giphy.gif)
+| Environment | Branch  | URL                          |
+|-------------|---------|------------------------------|
+| Production  | master  | https://example.com          |
+| Staging     | staging | https://staging.example.com  |
+| Development | develop | https://dev.example.com      |
 
+## Maintainer
 
-## Getting Started
-Wonderpress comes with a super basic CLI to help you interact with the various developer tools it provides. The CLI will help you do everything from setting up the WordPress installation to "sniffing" your code against the WordPress Standards.
+### Maintainers:
 
-To access the Wonderpress CLI, navigate to the root of the project and enter the following in your terminal:
+| Name                    | Github Username   |
+|-------------------------|-------------------|
+| [Name](mailto:email-id) |  @github_username |
 
-```
-$ sh wonderpress
-```
-You will be prompted with:
+### Client Representative: (if any)
 
-```
-*********************
+| Name                    | Github Username   |
+|-------------------------|-------------------|
+| [Name](mailto:email-id) |  @github_username |
 
-✨WONDERPRESS MAIN MENU✨
+## Development Workflow
 
-*********************
+### Default Branch
 
-What would you like to do?
-[1] Setup WordPress
-[2] Sniff Code
-[3] Install a Plugin
-[4] Reinstall Wonderpress
-[5] Exit
-```
+`master`
 
-### 1. Setup WordPress
-This option will use the [WP CLI](https://wp-cli.org/) command-line interface to download, configure, and install the latest version of WordPress. If your machine does not currently have WP CLI installed, it will be installed in this process.
+### Branch naming convention
 
-After WordPress is installed, this option will install code sniffing tools that can later be used to validate the quality of your code against the official [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards).
+- For bug - `fix/issue-number` For example, `fix/GH-3`
+- For feature - `feature/issue-number` For example, `feature/GH-3`
 
-### 2. Sniff Code
-This option will use `PHP_CodeSniffer` to validate your code against the [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards). The sniffing process looks for things like code format, syntax errors, and insecurities.
+### Pull Request and issue notes
 
-Optionally, this will also ask if you would like to automatically "fix" various issues that are found. You will be prompted to confirm before this occurs.
+- Title should be same as Issue title. Also add issue number before title. For example, `GH-3 Setup initial theme`.
+- Add proper description.
+- Assign reviewer.
+- Create draft pull request for work in-progress PR and don't add `WIP:` in PR title.
+- PR should have one approval.
 
-*Note: not all issues are able to be automatically fixed, but all issues will have associated file names and line numbers provided.*
+### Testing
 
-### 3. Install a Plugin
-WonderPress has various plugins that it works particularly well with. This option allows for the easy download and installation of these plugins. You will be prompted with options.
+List down tests created for the project and details on how to execute them locally.
 
-### 4. Reinstall WonderPress
-Sometimes it is easy to get into a hole, and it helps to have a "reset" button. This option will **delete all files and reinstall WonderPress from scratch**. Yes, it's super danger. Be careful. ☠️
+- PHP Unit tests if any.
+- Behat tests if any.
+- GitHub actions/travis/circleci etc. CI test cases if any.
+
+### Linting
+
+Notes about linting to be followed in project.
+
+## Project Management tool details
+
+Add details about JIRA / ActiveCollab / GitHub project in use.
+
+## Env/project specific Customization
+
+Example: Plugin settings that need to be updated in dev/staging sites.
+
+| Title                                                     | Name                         | Disable on dev site? | Notes                   |
+|-----------------------------------------------------------|------------------------------|----------------------|-------------------------|
+| Jetpack by WordPress.com                                  | jetpack                      | No                   | Enable Jetpack Dev Mode |
+| AWS SES wp_mail drop-in                                   | aws-ses-wp-mail              | No                   | Check that `AWS_SES_MAIL_*` constants are not present in wp-config     |
+
+## Repo integrations
+
+Add details of apps and integrations installed for the repo.
+
+## Meta
+
+### Repo Setup Guide
+
+If you are setting up the repo, read: [REPO-SETUP-GUIDE.md](./REPO-SETUP-GUIDE.md)
+
+### Skeleton Guide
+
+Please read the skeleton repo guide to understand the structure of repo: [SKELETON-GUIDE.md](./SKELETON-GUIDE.md)
