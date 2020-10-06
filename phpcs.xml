@@ -14,7 +14,7 @@
     <!-- Show sniff codes in all reports -->
     <arg value="ns"/>
 
-    <!-- Include the WordPress-Extra standard. -->
+    <!-- Include the WordPress standard. -->
     <rule ref="WordPress">
         <!-- Exclude any rules here -->
         <exclude name="WordPress.PHP.DisallowShortTernary"/>
