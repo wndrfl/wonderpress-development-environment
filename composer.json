@@ -6,7 +6,7 @@
     	"lint": "./vendor/bin/phpcs -p -v .",
     	"lint-fix": "./vendor/bin/phpcbf -p -v .",
     	"post-install-cmd": [
-    		"./vendor/bin/phpcs --config-set installed_paths ./vendor/wp-coding-standards/wpcs",
+    		"./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
     		"./vendor/bin/phpcs -i"
     	]
     }
