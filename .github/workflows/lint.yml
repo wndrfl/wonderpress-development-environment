@@ -8,6 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Codesniff against the Wonderpress Coding Standards...
-      run: |
-        composer install
-        ./vendor/bin/phpcs .
+      run: composer install

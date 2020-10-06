@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
-<ruleset name="Wonderpress">
-    <description>Wonderpress Wordpress Coding Standards</description>
+<ruleset name="Wonderful">
+    <description>Wonderpress Coding Standards</description>
 
     <!-- Scan all files in directory -->
     <file>.</file>
 
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
+
+    <!-- Exclude files -->
+    <arg name="ignore" value="./vendor"/>
 
     <!-- Show colors in console -->
     <arg value="-colors"/>
@@ -17,7 +20,8 @@
     <!-- Include the WordPress standard. -->
     <rule ref="WordPress">
         <!-- Exclude any rules here -->
-        <exclude name="WordPress.PHP.DisallowShortTernary"/>
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+        <exclude name="WordPress.VIP.AdminBarRemoval.RemovalDetected"/>
     </rule>
 
     <!-- Add in some extra rules from other standards. -->
