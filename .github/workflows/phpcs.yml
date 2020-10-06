@@ -1,13 +1,13 @@
-name: WordPress Coding Standards
+name: Wonderpress Coding Standards
 
 on: pull_request
 
 jobs:
-  wordpress-coding-standards:
+  wonderpress-coding-standards:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Codesniff against the WordPress Core Coding Standards...
+    - name: Codesniff against the Wonderpress Coding Standards...
       run: |
         composer install
         ./vendor/bin/phpcs .
