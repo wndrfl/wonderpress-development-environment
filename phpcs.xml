@@ -12,7 +12,7 @@
     <arg name="extensions" value="php"/>
 
     <!-- Exclude files -->
-    <arg name="ignore" value="./vendor"/>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
 
     <!-- Show colors in console -->
     <arg value="-colors"/>
