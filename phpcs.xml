@@ -5,6 +5,9 @@
     <!-- Scan all files in directory -->
     <file>.</file>
 
+    <!-- Check up to 8 files simultaneously. -->
+    <arg name="parallel" value="8" />
+
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
 
