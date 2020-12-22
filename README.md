@@ -1,28 +1,14 @@
-# Project Name / sitename.tld
+# {{ project_name }}
 
-Project description and short intro goes here.
+{{ project_description }}
 
 ## Environments
 
-| Environment | Branch  | URL                          |
-|-------------|---------|------------------------------|
-| Production  | master  | https://example.com          |
-| Staging     | staging | https://staging.example.com  |
-| Development | develop | https://dev.example.com      |
-
-## Maintainer
-
-### Maintainers:
-
-| Name                    | Github Username   |
-|-------------------------|-------------------|
-| [Name](mailto:email-id) |  @github_username |
-
-### Client Representative: (if any)
-
-| Name                    | Github Username   |
-|-------------------------|-------------------|
-| [Name](mailto:email-id) |  @github_username |
+| Environment | Branch  | URL                          	|
+|-------------|---------|-------------------------------|
+| Production  | master  | {{ production_url }}          |
+| Staging     | staging | {{ stage_url }}  				|
+| Development | develop | {{ dev_url }}      			|
 
 ## Development Workflow
 
@@ -32,16 +18,8 @@ Project description and short intro goes here.
 
 ### Branch naming convention
 
-- For bug - `fix/issue-number` For example, `fix/GH-3`
-- For feature - `feature/issue-number` For example, `feature/GH-3`
-
-### Pull Request and issue notes
-
-- Title should be same as Issue title. Also add issue number before title. For example, `GH-3 Setup initial theme`.
-- Add proper description.
-- Assign reviewer.
-- Create draft pull request for work in-progress PR and don't add `WIP:` in PR title.
-- PR should have one approval.
+- For bugs - `fix/issue-name` For example, `fix/syntax-errors`
+- For features - `feature/feature-name` For example, `feature/home-page`
 
 ### Testing
 
@@ -51,33 +29,10 @@ List down tests created for the project and details on how to execute them local
 - Behat tests if any.
 - GitHub actions/travis/circleci etc. CI test cases if any.
 
-### Linting
+### Coding Standards and Linting
 
-Notes about linting to be followed in project.
+This environment is automatically codesniffed against the [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/) when pushed to Github.
 
-## Project Management tool details
+To run codesniffing locally:
 
-Add details about JIRA / ActiveCollab / GitHub project in use.
-
-## Env/project specific Customization
-
-Example: Plugin settings that need to be updated in dev/staging sites.
-
-| Title                                                     | Name                         | Disable on dev site? | Notes                   |
-|-----------------------------------------------------------|------------------------------|----------------------|-------------------------|
-| Jetpack by WordPress.com                                  | jetpack                      | No                   | Enable Jetpack Dev Mode |
-| AWS SES wp_mail drop-in                                   | aws-ses-wp-mail              | No                   | Check that `AWS_SES_MAIL_*` constants are not present in wp-config     |
-
-## Repo integrations
-
-Add details of apps and integrations installed for the repo.
-
-## Meta
-
-### Repo Setup Guide
-
-If you are setting up the repo, read: [REPO-SETUP-GUIDE.md](./REPO-SETUP-GUIDE.md)
-
-### Skeleton Guide
-
-Please read the skeleton repo guide to understand the structure of repo: [SKELETON-GUIDE.md](./SKELETON-GUIDE.md)
+`$ wonderpress lint`

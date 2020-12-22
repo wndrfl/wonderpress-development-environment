@@ -12,6 +12,8 @@
     <arg name="extensions" value="php"/>
 
     <!-- Exclude files -->
+    <exclude-pattern>*/woocommerce/*</exclude-pattern>
+    <exclude-pattern>*/wp-content/themes/index.php</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
     <!-- Show colors in console -->
@@ -23,6 +25,7 @@
     <!-- Include the WordPress standard. -->
     <rule ref="WordPress">
         <!-- Exclude any rules here -->
+        <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
         <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
         <exclude name="WordPress.VIP.AdminBarRemoval.RemovalDetected"/>
     </rule>

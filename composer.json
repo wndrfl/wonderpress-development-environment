@@ -1,13 +1,13 @@
 {
     "require-dev": {
-		"wp-coding-standards/wpcs": "^0.14.0"
+        "wp-coding-standards/wpcs": "^0.14.0"
     },
     "scripts": {
-    	"lint": "./vendor/bin/phpcs -p -v .",
-    	"lint-fix": "./vendor/bin/phpcbf -p -v .",
-    	"post-install-cmd": [
-    		"./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
-    		"./vendor/bin/phpcs -i"
-    	]
+        "lint": "./vendor/bin/phpcs -p -v wp-content/themes/.",
+        "lint-fix": "./vendor/bin/phpcbf -p -v .",
+        "post-install-cmd": [
+            "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+            "./vendor/bin/phpcs -i"
+        ]
     }
 }
