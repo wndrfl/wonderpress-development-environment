@@ -1,5 +1,5 @@
 # WonderPress specific
-vendor
+/vendor
 node_modules
 
 # Misc extensions
