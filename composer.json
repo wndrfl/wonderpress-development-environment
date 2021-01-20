@@ -1,6 +1,6 @@
 {
     "require-dev": {
-        "wp-coding-standards/wpcs": "^0.14.0"
+        "wp-coding-standards/wpcs": "^2.3.0"
     },
     "scripts": {
         "lint": "./vendor/bin/phpcs -p -v wp-content/themes/.",
