@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Codesniff against the Wonderpress Coding Standards...
-      run: composer install
+      run: composer install && composer run lint
