@@ -1,0 +1,30 @@
+{
+  "name": "wonderpress-theme",
+  "version": "2.11.0",
+  "engines": {
+    "node": ">=12.10.0"
+  },
+  "devDependencies": {
+    "@wndrfl/static-kit-cli": "<3.0.0"
+  },
+  "scripts": {
+    "build": "npm run build --prefix static --if-present",
+    "dev": "npm run dev --prefix static --if-present",
+    "postcreatetemplate": "npx @wndrfl/static-kit-cli page create -d static -n $npm_config_name",
+    "postinstall": "composer install && npx @wndrfl/static-kit-cli install -d static -i -c -n 404,archive,author,category,index,page,search,single,tag",
+    "reset": "rm -rf static && rm -rf vendor",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wndrfl/wonderpress-theme.git"
+  },
+  "author": "Johnnie Munger <johnnie@wonderful.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wndrfl/wonderpress-theme/issues"
+  },
+  "homepage": "https://github.com/wndrfl/wonderpress-theme",
+  "description": "The official Wonderful boilerplate theme for WordPress.",
+  "keywords": []
+}
