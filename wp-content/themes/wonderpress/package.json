@@ -10,8 +10,8 @@
   "scripts": {
     "build": "npm run build --prefix static --if-present",
     "dev": "npm run dev --prefix static --if-present",
-    "postcreatetemplate": "npx -p @wndrfl/static-kit-cli page create -d static -n $npm_config_name",
-    "postinstall": "npx -p @wndrfl/static-kit-cli install -d static -i -c -n 404,archive,author,category,index,page,search,single,tag",
+    "postcreatetemplate": "npx @wndrfl/static-kit-cli template create -d static -n $npm_config_name",
+    "postinstall": "npx @wndrfl/static-kit-cli install-kit -d static -i -c -n 404,archive,author,category,index,page,search,single,tag",
     "reset": "rm -rf static",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
