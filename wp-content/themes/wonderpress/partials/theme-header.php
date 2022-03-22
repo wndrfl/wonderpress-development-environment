@@ -14,7 +14,7 @@
 			array(
 				'url' => home_url(),
 				'content' => 'Home',
-				'title' => 'Return home'
+				'title' => 'Return home',
 			)
 		);
 		?>
