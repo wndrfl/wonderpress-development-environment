@@ -10,10 +10,13 @@
 
 	<div class="theme-header__logo">
 		<?php
-		wonder_link( array(
-			'url' => home_url(),
-			'content' => 'Home'
-		) );
+		wonder_link(
+			array(
+				'url' => home_url(),
+				'content' => 'Home',
+				'title' => 'Return home'
+			)
+		);
 		?>
 	</div>
 
