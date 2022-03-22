@@ -1,6 +1,6 @@
 <?php
 /**
- * A view template for a theme-image.
+ * A view template for an image.
  *
  * @package Wonderpress Theme
  */

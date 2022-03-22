@@ -38,21 +38,11 @@ spl_autoload_register(
 	}
 );
 
-/**
- * Require all files in a directory.
- *
- * @param String $path The path to the directory (with trailing slash).
- */
-function require_all( $path ) {
-	foreach ( glob( $path . '*.php' ) as $filename ) {
-		require_once $filename;
-	}
-}
 
 /**
- * Import PHP files from ./lib/ directory
+ * Import PHP files from ./inc/ directory
  */
-require_all( dirname( __FILE__ ) . '/inc/' );
+wonder_require_all( dirname( __FILE__ ) . '/inc/' );
 
 
 /**
