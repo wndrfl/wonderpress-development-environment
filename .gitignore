@@ -12,6 +12,7 @@ wp*~
 Thumbs.db
 .htaccess
 package-lock.json
+composer.lock
 
 # wordpress specific
 wp-config.php

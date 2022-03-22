@@ -1,6 +1,12 @@
 name: wonderpress-coding-standards
 
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
   wonderpress-coding-standards:
@@ -8,4 +14,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Codesniff against the Wonderpress Coding Standards...
-      run: composer install && composer run lint
+      run: composer update && composer run lint
