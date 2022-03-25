@@ -37,11 +37,11 @@ function wonder_inline_css() {
 		if ( file_exists( get_template_directory() . $path ) ) {
 			echo "<style type='text/css'>";
 			include get_template_directory() . $path;
-			echo "</style>";
+			echo '</style>';
 		}
 	}
 }
-add_action('wp_head', 'wonder_inline_css');
+add_action( 'wp_head', 'wonder_inline_css' );
 
 /**
  * If configured, inline JS into the footer.
@@ -50,13 +50,13 @@ function wonder_inline_js() {
 	if ( wonder_prefer_inline_js() && wonder_body_id() ) {
 		$path = '/static/dist/js/' . wonder_body_id() . '.js';
 		if ( file_exists( get_template_directory() . $path ) ) {
-			echo "<script>";
+			echo '<script>';
 			include get_template_directory() . $path;
-			echo "</script>";
+			echo '</script>';
 		}
 	}
 }
-add_action('wp_footer', 'wonder_inline_js');
+add_action( 'wp_footer', 'wonder_inline_js' );
 
 /**
  * Enqueue any javascript files to be used in this theme.
@@ -68,7 +68,7 @@ function wonder_enqueue_scripts() {
 		// Remove the built-in WordPress copy of jQuery
 		wp_deregister_script( 'jquery' );
 
-		if ( !wonder_prefer_inline_js() && wonder_body_id() ) {
+		if ( ! wonder_prefer_inline_js() && wonder_body_id() ) {
 
 			// Replace with our own copy of jquery (and our custom scripts)
 			$path = '/static/dist/js/' . wonder_body_id() . '.js';
@@ -105,7 +105,7 @@ function wonder_enqueue_styles() {
 	// remove dashicons
 	wp_deregister_style( 'dashicons' );
 
-	if ( !wonder_prefer_inline_css() && wonder_body_id() ) {
+	if ( ! wonder_prefer_inline_css() && wonder_body_id() ) {
 		$path = '/static/dist/css/' . wonder_body_id() . '.css';
 
 		if ( file_exists( get_template_directory() . $path ) ) {
