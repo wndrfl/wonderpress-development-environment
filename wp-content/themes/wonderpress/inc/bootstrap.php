@@ -29,6 +29,36 @@ if ( ! is_admin() ) {
 }
 
 /**
+ * If configured, inline CSS into the head.
+ **/
+function wonder_inline_css() {
+	if ( wonder_prefer_inline_css() && wonder_body_id() ) {
+		$path = '/static/dist/css/' . wonder_body_id() . '.css';
+		if ( file_exists( get_template_directory() . $path ) ) {
+			echo "<style type='text/css'>";
+			include get_template_directory() . $path;
+			echo "</style>";
+		}
+	}
+}
+add_action('wp_head', 'wonder_inline_css');
+
+/**
+ * If configured, inline JS into the footer.
+ **/
+function wonder_inline_js() {
+	if ( wonder_prefer_inline_js() && wonder_body_id() ) {
+		$path = '/static/dist/js/' . wonder_body_id() . '.js';
+		if ( file_exists( get_template_directory() . $path ) ) {
+			echo "<script>";
+			include get_template_directory() . $path;
+			echo "</script>";
+		}
+	}
+}
+add_action('wp_footer', 'wonder_inline_js');
+
+/**
  * Enqueue any javascript files to be used in this theme.
  * These scripts will be added to the header or footer.
  */
