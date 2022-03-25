@@ -38,7 +38,7 @@ function wonder_enqueue_scripts() {
 		// Remove the built-in WordPress copy of jQuery
 		wp_deregister_script( 'jquery' );
 
-		if ( wonder_body_id() ) {
+		if ( !wonder_prefer_inline_js() && wonder_body_id() ) {
 
 			// Replace with our own copy of jquery (and our custom scripts)
 			$path = '/static/dist/js/' . wonder_body_id() . '.js';
@@ -66,6 +66,7 @@ function wonder_enqueue_scripts() {
 
 add_action( 'wp_enqueue_scripts', 'wonder_enqueue_scripts' );
 
+
 /**
  * Enqueue any stylesheets to be used in this theme.
  */
@@ -74,7 +75,7 @@ function wonder_enqueue_styles() {
 	// remove dashicons
 	wp_deregister_style( 'dashicons' );
 
-	if ( wonder_body_id() ) {
+	if ( !wonder_prefer_inline_css() && wonder_body_id() ) {
 		$path = '/static/dist/css/' . wonder_body_id() . '.css';
 
 		if ( file_exists( get_template_directory() . $path ) ) {
