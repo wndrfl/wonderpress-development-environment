@@ -27,7 +27,6 @@
         <!-- Exclude any rules here -->
         <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
         <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
-        <exclude name="WordPress.VIP.AdminBarRemoval.RemovalDetected"/>
     </rule>
 
     <!-- Add in some extra rules from other standards. -->
@@ -35,10 +34,4 @@
     <rule ref="Generic.Commenting.Todo"/>
 
     <config name="minimum_supported_wp_version" value="4.9"/>
-
-	<!--
-	Prevent errors caused by WordPress Coding Standards not supporting PHP 8.0+.
-	See https://github.com/WordPress/WordPress-Coding-Standards/issues/2035
-	-->
-	<ini name="error_reporting" value="E_ALL &#38; ~E_DEPRECATED" />
 </ruleset>

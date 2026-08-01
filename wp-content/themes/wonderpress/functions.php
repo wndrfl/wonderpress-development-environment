@@ -42,7 +42,7 @@ spl_autoload_register(
 /**
  * Import PHP files from ./inc/ directory
  */
-wonder_require_all( dirname( __FILE__ ) . '/inc/' );
+wonder_require_all( __DIR__ . '/inc/' );
 
 
 /**
