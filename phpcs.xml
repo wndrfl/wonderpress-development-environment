@@ -27,7 +27,6 @@
         <!-- Exclude any rules here -->
         <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
         <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
-        <exclude name="WordPress.VIP.AdminBarRemoval.RemovalDetected"/>
     </rule>
 
     <!-- Add in some extra rules from other standards. -->
