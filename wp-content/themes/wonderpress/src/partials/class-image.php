@@ -9,6 +9,15 @@ namespace Wonderpress\Partials;
 
 use Wonderpress_Core\Partials\Image as Core_Image;
 
+defined( 'ABSPATH' ) || exit;
+
+// The base class ships with the Wonderpress Core plugin; without it there
+// is nothing to extend. Callers should use wonder_image(), which falls back
+// to a plain <img> tag when the plugin is missing (see inc/compat.php).
+if ( ! class_exists( 'Wonderpress_Core\Partials\Image' ) ) {
+	return;
+}
+
 /**
  * Image
  * Wonderpress\Partials\Image
