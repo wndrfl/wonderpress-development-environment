@@ -17,10 +17,10 @@
     <exclude-pattern>*/vendor/*</exclude-pattern>
 
     <!-- Show colors in console -->
-    <arg value="-colors"/>
+    <arg name="colors"/>
 
     <!-- Show sniff codes in all reports -->
-    <arg value="ns"/>
+    <arg value="s"/>
 
     <!-- Include the WordPress standard. -->
     <rule ref="WordPress">
