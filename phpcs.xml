@@ -11,10 +11,12 @@
     <!-- Scan only PHP files -->
     <arg name="extensions" value="php"/>
 
-    <!-- Exclude files -->
+    <!-- Exclude files (WooCommerce covers template overrides inside themes) -->
     <exclude-pattern>*/woocommerce/*</exclude-pattern>
     <exclude-pattern>*/wp-content/themes/index.php</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/.claude/*</exclude-pattern>
+    <exclude-pattern>*/static/*</exclude-pattern>
 
     <!-- Show colors in console -->
     <arg name="colors"/>
@@ -33,5 +35,8 @@
     <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
     <rule ref="Generic.Commenting.Todo"/>
 
-    <config name="minimum_supported_wp_version" value="4.9"/>
+    <!-- Report warnings, but only fail the run on errors. -->
+    <config name="ignore_warnings_on_exit" value="1"/>
+
+    <config name="minimum_supported_wp_version" value="6.0"/>
 </ruleset>

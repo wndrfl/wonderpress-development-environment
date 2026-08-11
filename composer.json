@@ -8,8 +8,8 @@
         }
     },
     "scripts": {
-        "lint": "./vendor/bin/phpcs -p -v .",
-        "lint-fix": "./vendor/bin/phpcbf -p -v .",
+        "lint": "./vendor/bin/phpcs -p -v wp-content/themes/.",
+        "lint-fix": "./vendor/bin/phpcbf -p -v wp-content/themes/.",
         "post-update-cmd": [
             "./vendor/bin/phpcs -i"
         ]

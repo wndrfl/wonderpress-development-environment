@@ -16,7 +16,7 @@ if ( have_posts() ) :
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 		<?php if ( has_post_thumbnail() ) : ?>
-		<?php // The heading below links to the same place, so hide this duplicate link from assistive technology. ?>
+			<?php // The heading below links to the same place, so hide this duplicate link from assistive technology. ?>
 		<a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 			<?php the_post_thumbnail( 'wonderpress-micro' ); ?>
 		</a>

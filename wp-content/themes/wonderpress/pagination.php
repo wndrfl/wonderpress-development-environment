@@ -2,9 +2,9 @@
 /**
  * The pagination template.
  *
- * the_posts_pagination() outputs a labelled <nav> landmark with numbered,
- * translated links and aria-current on the active page — and nothing at
- * all when there is only one page.
+ * Renders via the_posts_pagination(): a labelled <nav> landmark with
+ * numbered, translated links and aria-current on the active page — and
+ * nothing at all when there is only one page.
  *
  * @package Wonderpress Theme
  */

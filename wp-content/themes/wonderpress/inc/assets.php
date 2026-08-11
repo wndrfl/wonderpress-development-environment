@@ -64,7 +64,7 @@ function wonderpress_enqueue_styles() {
 		// read, never include()d, so it is not executed as PHP.
 		wp_register_style( 'wonderpress-inline', false, array(), (string) filemtime( $absolute ) );
 		wp_enqueue_style( 'wonderpress-inline' );
-		wp_add_inline_style( 'wonderpress-inline', (string) file_get_contents( $absolute ) ); // phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown -- Local theme file.
+		wp_add_inline_style( 'wonderpress-inline', (string) file_get_contents( $absolute ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local theme file, not remote data.
 		return;
 	}
 
@@ -130,7 +130,7 @@ function wonderpress_inline_js() {
 	}
 
 	// The file is read, never include()d, so it is not executed as PHP.
-	$js = (string) file_get_contents( get_template_directory() . $path ); // phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown -- Local theme file.
+	$js = (string) file_get_contents( get_template_directory() . $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local theme file, not remote data.
 
 	printf( '<script>%s</script>', $js ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw built asset; escaping would corrupt it.
 }
