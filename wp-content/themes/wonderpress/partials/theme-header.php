@@ -9,55 +9,27 @@
 <header id="theme-header" class="theme-header">
 
 	<div class="theme-header__logo">
+		<?php if ( has_custom_logo() ) : ?>
+			<?php the_custom_logo(); ?>
+		<?php else : ?>
+			<a class="theme-header__logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name', 'display' ) ); ?></a>
+		<?php endif; ?>
+	</div>
+
+	<?php if ( has_nav_menu( 'header-menu' ) ) : ?>
+	<nav class="theme-header__nav" aria-label="<?php esc_attr_e( 'Primary', 'wonderpress' ); ?>">
 		<?php
-		wonder_link(
+		// wp_nav_menu() supplies current-menu-item classes and
+		// aria-current="page" on the active item.
+		wp_nav_menu(
 			array(
-				'url' => home_url(),
-				'content' => 'Home',
-				'title' => 'Return home',
+				'theme_location' => 'header-menu',
+				'container'      => '',
+				'menu_class'     => 'theme-header__nav-list',
+				'fallback_cb'    => false,
 			)
 		);
 		?>
-	</div>
-
-	<nav class="theme-header__nav" role="navigation">
-		<ul class="theme-header__nav-list">
-			<?php
-			$menu_items = wonder_get_menu_array( 'header-menu' );
-			foreach ( $menu_items as $menu_item ) {
-				?>
-			<li class="theme-header__nav-list-item">
-				<?php
-				wonder_link(
-					array(
-						'classes' => 'theme-header__nav-list-item-link',
-						'content' => $menu_item['title'],
-						'url' => $menu_item['url'],
-						'title' => $menu_item['title'],
-					)
-				);
-
-				if ( $menu_item['children'] ) {
-					?>
-				<ul class="theme-header__nav-list">
-					<?php foreach ( $menu_item['children'] as $child_menu_item ) { ?>
-					<li class="theme-header__nav-list-item">
-						<?php
-						wonder_link(
-							array(
-								'classes' => 'theme-header__nav-list-item-link',
-								'content' => $child_menu_item['title'],
-								'url' => $child_menu_item['url'],
-								'title' => $child_menu_item['title'],
-							)
-						);
-						?>
-					</li>
-					<?php } ?>
-				</ul>
-				<?php } ?>
-			</li>
-			<?php } ?>
-		</ul>
 	</nav>
+	<?php endif; ?>
 </header>
