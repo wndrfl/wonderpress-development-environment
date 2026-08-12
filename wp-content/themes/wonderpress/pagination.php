@@ -2,11 +2,16 @@
 /**
  * The pagination template.
  *
+ * Renders via the_posts_pagination(): a labelled <nav> landmark with
+ * numbered, translated links and aria-current on the active page — and
+ * nothing at all when there is only one page.
+ *
  * @package Wonderpress Theme
  */
 
-?>
-<div class="pagination">
-	<div class="pagination-previous"><?php previous_posts_link( 'Older posts' ); ?></div>
-	<div class="pagination-next"><?php next_posts_link( 'Newer posts' ); ?></div>
-</div>
+the_posts_pagination(
+	array(
+		'prev_text' => esc_html__( 'Newer posts', 'wonderpress' ),
+		'next_text' => esc_html__( 'Older posts', 'wonderpress' ),
+	)
+);

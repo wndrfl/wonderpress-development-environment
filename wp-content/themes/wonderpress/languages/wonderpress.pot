@@ -1,0 +1,154 @@
+# Copyright (C) 2026 Wonderful
+# This file is distributed under the MIT.
+msgid ""
+msgstr ""
+"Project-Id-Version: Wonderpress 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/wonderpress\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-11T15:35:54+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: wonderpress\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Wonderpress"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://github.com/wonderful-io/wonderpress-development-environment"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "The super magical boilerplate WordPress theme, by Wonderful"
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Wonderful"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://wonderful.io"
+msgstr ""
+
+#: 404.php:18
+msgid "Page not found"
+msgstr ""
+
+#: 404.php:21
+msgid "The page you are looking for does not exist. It may have been moved or removed. Try a search, or head back home."
+msgstr ""
+
+#: 404.php:27
+msgid "Return home"
+msgstr ""
+
+#. translators: %s: number of comments.
+#: comments.php:22
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:45
+msgid "Comments are closed."
+msgstr ""
+
+#: footer.php:12
+msgid "Footer"
+msgstr ""
+
+#: header.php:24
+msgid "Skip to content"
+msgstr ""
+
+#: inc/compat.php:29
+msgid "The Wonderpress Core plugin is not active. The Wonderpress theme is running in reduced-functionality mode: partials, custom navigation helpers and inline asset delivery are unavailable."
+msgstr ""
+
+#: inc/setup.php:53
+msgid "Header Menu"
+msgstr ""
+
+#: inc/setup.php:54
+msgid "Footer Menu"
+msgstr ""
+
+#: index.php:24
+msgid "Latest Posts"
+msgstr ""
+
+#. translators: %s: the author's posts link.
+#: loop.php:38
+#: single.php:36
+msgid "Published by %s"
+msgstr ""
+
+#: loop.php:43
+#: single.php:42
+msgid "Leave your thoughts"
+msgstr ""
+
+#: loop.php:43
+#: single.php:42
+msgid "1 Comment"
+msgstr ""
+
+#: loop.php:43
+#: single.php:42
+msgid "% Comments"
+msgstr ""
+
+#: loop.php:58
+#: page.php:44
+#: single.php:98
+msgid "Sorry, nothing to display."
+msgstr ""
+
+#: pagination.php:14
+msgid "Newer posts"
+msgstr ""
+
+#: pagination.php:15
+msgid "Older posts"
+msgstr ""
+
+#: partials/theme-header.php:20
+msgid "Primary"
+msgstr ""
+
+#. translators: %s: the search query.
+#: search.php:20
+msgid "Search results for: %s"
+msgstr ""
+
+#: single.php:55
+#: single.php:67
+msgid ", "
+msgstr ""
+
+#. translators: %s: comma-separated list of tag links.
+#: single.php:61
+msgid "Tagged: %s"
+msgstr ""
+
+#. translators: %s: comma-separated list of category links.
+#: single.php:73
+msgid "Categorised in: %s"
+msgstr ""
+
+#: single.php:86
+msgid "Previous: %title"
+msgstr ""
+
+#: single.php:87
+msgid "Next: %title"
+msgstr ""

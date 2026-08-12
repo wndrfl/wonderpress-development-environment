@@ -9,9 +9,18 @@ namespace Wonderpress\Partials;
 
 use Wonderpress_Core\Partials\Link as Core_Link;
 
+defined( 'ABSPATH' ) || exit;
+
+// The base class ships with the Wonderpress Core plugin; without it there
+// is nothing to extend. Callers should use wonder_link(), which falls back
+// to a plain <a> tag when the plugin is missing (see inc/compat.php).
+if ( ! class_exists( 'Wonderpress_Core\Partials\Link' ) ) {
+	return;
+}
+
 /**
  * Link
- * Wonderpress\Partials\Image
+ * Wonderpress\Partials\Link
  */
 class Link extends Core_Link {
 

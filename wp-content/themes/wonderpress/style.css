@@ -1,11 +1,54 @@
 /*!
  * Theme Name: Wonderpress
+ * Theme URI: https://github.com/wonderful-io/wonderpress-development-environment
  * Description: The super magical boilerplate WordPress theme, by Wonderful
  * Version: 1.0.0
  * Author: Wonderful
  * Author URI: https://wonderful.io
- * Tags: Blank, HTML5, CSS3
+ * Requires at least: 6.0
+ * Tested up to: 6.7
+ * Requires PHP: 7.4
+ * Text Domain: wonderpress
+ * Domain Path: /languages
+ * Tags: one-column, custom-menu, custom-logo, threaded-comments, translation-ready
  *
  * License: MIT
- * License URI: http://opensource.org/licenses/mit-license.php
+ * License URI: https://opensource.org/licenses/mit-license.php
  */
+
+/*
+ * The theme's real styles are compiled by Static Kit into static/dist and
+ * enqueued per-template (see inc/assets.php). This file only carries the
+ * theme metadata above plus the accessibility baseline below, which core-
+ * generated markup (search forms, comment forms, pagination) relies on.
+ */
+
+/* Visually hidden, but available to assistive technology. */
+.screen-reader-text {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+/* Reveal the skip link when it receives keyboard focus. */
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 1rem;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}

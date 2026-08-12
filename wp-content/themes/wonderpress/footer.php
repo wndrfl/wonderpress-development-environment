@@ -6,18 +6,16 @@
  */
 
 ?>
-		<footer class="theme-footer" role="contentinfo">
+		<footer class="theme-footer">
 			<div class="container">
-				<nav class="theme-footer-nav">
+				<?php if ( has_nav_menu( 'footer-menu' ) ) : ?>
+				<nav class="theme-footer-nav" aria-label="<?php esc_attr_e( 'Footer', 'wonderpress' ); ?>">
 					<?php wonder_nav( 'footer-menu' ); ?>
 				</nav>
+				<?php endif; ?>
 			</div>
 		</footer>
 
 		<?php wp_footer(); ?>
-
-		<div id="theme-mobile-nav" class="theme-mobile-nav visible-xs-block">
-			<?php wonder_nav( 'header-menu' ); ?>
-		</div>
 	</body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 /**
- * A reusable WordPress Loop
+ * A reusable WordPress Loop.
  *
  * @package Wonderpress Theme
  */
@@ -15,28 +15,35 @@ if ( have_posts() ) :
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<?php if ( has_post_thumbnail() ) : // Check if thumbnail exists. ?>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-				<?php the_post_thumbnail( array( 120, 120 ) ); // Declare pixel size you need inside the array. ?>
-			</a>
+		<?php if ( has_post_thumbnail() ) : ?>
+			<?php // The heading below links to the same place, so hide this duplicate link from assistive technology. ?>
+		<a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+			<?php the_post_thumbnail( 'wonderpress-micro' ); ?>
+		</a>
 		<?php endif; ?>
 
-		<h2>
-			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-		</h2>
+		<header class="entry-header">
+			<h2 class="entry-title">
+				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+			</h2>
 
-		<span class="date">
-			<time datetime="<?php the_time( 'Y-m-d' ); ?> <?php the_time( 'H:i' ); ?>">
-				<?php the_date(); ?> <?php the_time(); ?>
-			</time>
-		</span>
-		<span class="author"><?php esc_html_e( 'Published by', 'wonder' ); ?> <?php the_author_posts_link(); ?></span>
-		<span class="comments">
-		<?php
-		if ( comments_open( get_the_ID() ) ) {
-			comments_popup_link( __( 'Leave your thoughts', 'wonder' ), __( '1 Comment', 'wonder' ), __( '% Comments', 'wonder' ) );}
-		?>
-		</span>
+			<span class="date">
+				<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+					<?php echo esc_html( get_the_date() ); ?>
+				</time>
+			</span>
+			<span class="author">
+				<?php
+				/* translators: %s: the author's posts link. */
+				printf( esc_html__( 'Published by %s', 'wonderpress' ), get_the_author_posts_link() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_the_author_posts_link() returns built, escaped markup.
+				?>
+			</span>
+			<?php if ( comments_open() || get_comments_number() ) : ?>
+			<span class="comments">
+				<?php comments_popup_link( esc_html__( 'Leave your thoughts', 'wonderpress' ), esc_html__( '1 Comment', 'wonderpress' ), esc_html__( '% Comments', 'wonderpress' ) ); ?>
+			</span>
+			<?php endif; ?>
+		</header>
 
 		<?php the_excerpt(); ?>
 
@@ -48,10 +55,6 @@ if ( have_posts() ) :
 
 <?php else : ?>
 
-	<article>
-		<h2>
-			<?php esc_html_e( 'Sorry, nothing to display.', 'wonder' ); ?>
-		</h2>
-	</article>
+	<p class="no-results"><?php esc_html_e( 'Sorry, nothing to display.', 'wonderpress' ); ?></p>
 
 <?php endif; ?>
