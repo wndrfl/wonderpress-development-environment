@@ -2,6 +2,14 @@
 /vendor
 node_modules
 
+# wp-env (Docker). The container writes wp-cli.yml and the debug log into the
+# project; .htaccess and wp-config.php are already covered below.
+# .wp-env.override.json is the per-developer escape hatch — wp-env merges it
+# over .wp-env.json, so a locally-bumped port never shows up in a diff.
+.wp-env.override.json
+wp-cli.yml
+wp-content/debug.log
+
 # Misc extensions
 wp*~
 .DS_Store
@@ -12,6 +20,7 @@ wp*~
 Thumbs.db
 .htaccess
 package-lock.json
+!/package-lock.json
 composer.lock
 
 # wordpress specific
