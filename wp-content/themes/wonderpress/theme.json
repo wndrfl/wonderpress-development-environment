@@ -1,0 +1,79 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"color": {
+			"custom": false,
+			"customDuotone": false,
+			"customGradient": false,
+			"defaultDuotone": false,
+			"defaultGradients": false,
+			"defaultPalette": false,
+			"palette": [
+				{ "slug": "white", "color": "#ffffff", "name": "White" },
+				{ "slug": "black", "color": "#000000", "name": "Black" },
+				{ "slug": "blue", "color": "#7a97ab", "name": "Blue" },
+				{ "slug": "dark-blue", "color": "#415364", "name": "Dark Blue" },
+				{ "slug": "light-blue", "color": "#aabbc7", "name": "Light Blue" },
+				{ "slug": "grey", "color": "#d1d3d4", "name": "Grey" },
+				{ "slug": "light-grey", "color": "#f1f2f2", "name": "Light Grey" },
+				{ "slug": "orange", "color": "#ff6b00", "name": "Orange" }
+			]
+		},
+		"typography": {
+			"customFontSize": false,
+			"defaultFontSizes": false,
+			"fluid": true,
+			"lineHeight": true,
+			"fontFamilies": [
+				{
+					"slug": "sans-serif",
+					"name": "Sans Serif",
+					"fontFamily": "\"Open Sans\", sans-serif"
+				},
+				{
+					"slug": "serif",
+					"name": "Serif",
+					"fontFamily": "serif"
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "name": "Small", "size": "0.875rem" },
+				{ "slug": "medium", "name": "Medium", "size": "1rem" },
+				{ "slug": "large", "name": "Large", "size": "1.5rem" },
+				{ "slug": "x-large", "name": "Extra Large", "size": "2.25rem" }
+			]
+		},
+		"spacing": {
+			"customSpacingSize": false,
+			"defaultSpacingSizes": false,
+			"padding": true,
+			"margin": true,
+			"blockGap": true,
+			"units": ["rem", "%", "vw"],
+			"spacingSizes": [
+				{ "slug": "20", "name": "1", "size": "0.5rem" },
+				{ "slug": "30", "name": "2", "size": "1rem" },
+				{ "slug": "40", "name": "3", "size": "1.5rem" },
+				{ "slug": "50", "name": "4", "size": "2.5rem" },
+				{ "slug": "60", "name": "5", "size": "4rem" }
+			]
+		},
+		"layout": {
+			"contentSize": "720px",
+			"wideSize": "1200px"
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"shadow": {
+			"defaultPresets": false
+		}
+	},
+	"styles": {}
+}
