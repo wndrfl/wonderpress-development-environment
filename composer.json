@@ -1,6 +1,7 @@
 {
     "require-dev": {
-        "wp-coding-standards/wpcs": "^3.1"
+        "wp-coding-standards/wpcs": "^3.1",
+        "squizlabs/php_codesniffer": "^3.13.6 || ^4.0.2"
     },
     "config": {
         "allow-plugins": {
