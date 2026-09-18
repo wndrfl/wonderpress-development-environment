@@ -1,18 +1,21 @@
 <?php
 /**
- * Compatibility layer for the wndrfl/wonderpress-core package.
+ * Minimal fallbacks for when wndrfl/wonderpress-core is not installed.
  *
- * The theme depends on wonderpress-core, which supplies the wonder_* helper
- * functions and the partial classes. Everything in this file is a minimal
- * fallback so the theme still boots — degraded but working — when that
- * dependency has not been installed. Each fallback is guarded with
- * function_exists(); when the package is present, functions.php has already
- * loaded it through vendor/autoload.php and its implementations win, so none
- * of these run.
+ * The theme declares that package as a Composer dependency, so the usual cause
+ * of it being absent is that `composer install` has not run. That is a setup
+ * error, not a supported mode — this file exists so the site says so clearly
+ * instead of fataling, not so it can run indefinitely without the package.
  *
- * Older sites may still carry the package as an mu-plugin rather than a
- * Composer dependency. That path also loads before the theme, so these
- * fallbacks stand down there too.
+ * It is deliberately small. It used to carry full fallback implementations of
+ * wonder_link(), wonder_image(), wonder_nav() and friends: a second copy of
+ * behaviour that also lives in the package, free to drift from it, and covered
+ * by no test. What remains is only the handful of helpers this theme's
+ * templates call directly, in their simplest honest form.
+ *
+ * Each fallback is guarded with function_exists(). When the package is present
+ * — loaded by functions.php through vendor/autoload.php, or by an older site's
+ * mu-plugin — its implementations win and none of these run.
  *
  * @package Wonderpress Theme
  */
@@ -31,7 +34,7 @@ function wonderpress_core_missing_notice() {
 
 	printf(
 		'<div class="notice notice-warning"><p>%s</p></div>',
-		esc_html__( "The Wonderpress theme's dependencies are not installed, so it is running in reduced-functionality mode: partials, blocks, custom navigation helpers and inline asset delivery are unavailable. Run `composer install` in the theme directory.", 'wonderpress' )
+		esc_html__( "The Wonderpress theme's dependencies are not installed, so it is running in reduced-functionality mode: partials, blocks, compiled CSS and JS, and custom navigation helpers are unavailable. Run `composer install` in the theme directory.", 'wonderpress' )
 	);
 }
 add_action( 'admin_notices', 'wonderpress_core_missing_notice' );
@@ -107,116 +110,5 @@ if ( ! function_exists( 'wonder_nav' ) ) {
 				'items_wrap'     => '<ul>%3$s</ul>',
 			)
 		);
-	}
-}
-
-if ( ! function_exists( 'wonder_get_menu_array' ) ) {
-	/**
-	 * Get a WordPress Menu as an associative array.
-	 *
-	 * Fallback: without the plugin there is no array-based menu helper, so
-	 * callers receive an empty array and should degrade gracefully. Prefer
-	 * wonder_nav()/wp_nav_menu() in templates.
-	 *
-	 * @param String $location A theme location, or a menu id, slug or name.
-	 * @return Array
-	 */
-	function wonder_get_menu_array( $location ) {
-		unset( $location );
-		return array();
-	}
-}
-
-if ( ! function_exists( 'wonder_link' ) ) {
-	/**
-	 * Render a plain anchor tag.
-	 *
-	 * Fallback for the plugin's Link partial. Supports the same core
-	 * parameters: url, content, classes, title, open_in_new_tab.
-	 *
-	 * @param Mixed[] $params An array of link parameters.
-	 * @param Boolean $echo Whether to echo or return the link snippet.
-	 * @return String
-	 */
-	function wonder_link( $params, $echo = true ) {
-		$classes = isset( $params['classes'] ) ? $params['classes'] : '';
-		$classes = is_array( $classes ) ? implode( ' ', $classes ) : $classes;
-
-		$html = sprintf(
-			'<a href="%s"%s%s%s>%s</a>',
-			esc_url( isset( $params['url'] ) ? $params['url'] : '' ),
-			$classes ? ' class="' . esc_attr( $classes ) . '"' : '',
-			! empty( $params['title'] ) ? ' title="' . esc_attr( $params['title'] ) . '"' : '',
-			! empty( $params['open_in_new_tab'] ) ? ' target="_blank" rel="noopener noreferrer"' : '',
-			wp_kses_post( isset( $params['content'] ) ? $params['content'] : '' )
-		);
-
-		if ( $echo ) {
-			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped piecewise above.
-		}
-
-		return $html;
-	}
-}
-
-if ( ! function_exists( 'wonder_image' ) ) {
-	/**
-	 * Render a plain image tag.
-	 *
-	 * Fallback for the plugin's Image partial. Supports the same core
-	 * parameters: src, alt, classes, width, height.
-	 *
-	 * @param Mixed[] $params An array of image parameters.
-	 * @param Boolean $echo Whether to echo or return the image snippet.
-	 * @return String
-	 */
-	function wonder_image( $params, $echo = true ) {
-		$classes = isset( $params['classes'] ) ? $params['classes'] : '';
-		$classes = is_array( $classes ) ? implode( ' ', $classes ) : $classes;
-
-		$html = sprintf(
-			'<img src="%s" alt="%s"%s%s%s loading="lazy" />',
-			esc_url( isset( $params['src'] ) ? $params['src'] : '' ),
-			esc_attr( isset( $params['alt'] ) ? $params['alt'] : '' ),
-			$classes ? ' class="' . esc_attr( $classes ) . '"' : '',
-			! empty( $params['width'] ) ? ' width="' . esc_attr( $params['width'] ) . '"' : '',
-			! empty( $params['height'] ) ? ' height="' . esc_attr( $params['height'] ) . '"' : ''
-		);
-
-		if ( $echo ) {
-			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped piecewise above.
-		}
-
-		return $html;
-	}
-}
-
-if ( ! function_exists( 'wonder_prefer_inline_css' ) ) {
-	/**
-	 * Whether the site prefers inlined CSS over enqueued stylesheets.
-	 *
-	 * Fallback: always false without the plugin.
-	 *
-	 * @param Boolean $prefer Ignored by the fallback.
-	 * @return Boolean
-	 */
-	function wonder_prefer_inline_css( $prefer = null ) {
-		unset( $prefer );
-		return false;
-	}
-}
-
-if ( ! function_exists( 'wonder_prefer_inline_js' ) ) {
-	/**
-	 * Whether the site prefers inlined JS over enqueued scripts.
-	 *
-	 * Fallback: always false without the plugin.
-	 *
-	 * @param Boolean $prefer Ignored by the fallback.
-	 * @return Boolean
-	 */
-	function wonder_prefer_inline_js( $prefer = null ) {
-		unset( $prefer );
-		return false;
 	}
 }

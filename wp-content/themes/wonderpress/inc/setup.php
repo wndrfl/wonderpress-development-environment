@@ -1,6 +1,14 @@
 <?php
 /**
- * Theme setup: supports, image sizes, navigation menus and text domain.
+ * Theme setup: text domain, navigation menus and image sizes.
+ *
+ * The generic supports — title-tag, html5, responsive-embeds, align-wide and
+ * the rest — come from wndrfl/wonderpress-core, which registers them on the
+ * same hook. They were identical in every project. Filter
+ * `wonderpress_theme_supports` to decline or change any of them.
+ *
+ * What stays here is what a project actually decides: which menu locations
+ * exist, what image sizes to generate, and this theme's text domain.
  *
  * @package Wonderpress Theme
  */
@@ -8,7 +16,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Register theme supports, menus and image sizes.
+ * Register the theme's text domain, menus and image sizes.
  *
  * Runs on after_setup_theme so child themes can adjust or remove any of it.
  *
@@ -18,35 +26,6 @@ function wonderpress_setup() {
 
 	// Make the theme translatable. Translations live in /languages.
 	load_theme_textdomain( 'wonderpress', get_template_directory() . '/languages' );
-
-	// Let WordPress manage the document <title>.
-	add_theme_support( 'title-tag' );
-
-	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'automatic-feed-links' );
-
-	// Output modern HTML5 markup for core-generated fragments.
-	add_theme_support(
-		'html5',
-		array(
-			'comment-list',
-			'comment-form',
-			'search-form',
-			'gallery',
-			'caption',
-			'style',
-			'script',
-		)
-	);
-
-	// Scale embedded media to the container width.
-	add_theme_support( 'responsive-embeds' );
-
-	// Allow wide and full alignments in the block editor.
-	add_theme_support( 'align-wide' );
-
-	// Let sites upload a logo instead of editing the header template.
-	add_theme_support( 'custom-logo' );
 
 	register_nav_menus(
 		array(
@@ -65,16 +44,3 @@ function wonderpress_setup() {
 	add_image_size( 'wonderpress-micro', 120, 0 );
 }
 add_action( 'after_setup_theme', 'wonderpress_setup' );
-
-/**
- * Remove the emoji detection script and styles WordPress prints by default.
- *
- * @return void
- */
-function wonderpress_disable_emojis() {
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-	remove_action( 'admin_print_styles', 'print_emoji_styles' );
-}
-add_action( 'init', 'wonderpress_disable_emojis' );
