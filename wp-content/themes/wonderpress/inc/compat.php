@@ -1,13 +1,18 @@
 <?php
 /**
- * Compatibility layer for the Wonderpress Core plugin.
+ * Compatibility layer for the wndrfl/wonderpress-core package.
  *
- * The theme is designed to run alongside the Wonderpress Core plugin, which
- * provides the wonder_* helper functions and the partial classes. Everything
- * in this file is a minimal fallback so the theme still boots — degraded but
- * working — when the plugin is missing or deactivated. Each fallback is
- * guarded with function_exists(); when the plugin is active (plugins load
- * before themes), the plugin's implementations win and none of these run.
+ * The theme depends on wonderpress-core, which supplies the wonder_* helper
+ * functions and the partial classes. Everything in this file is a minimal
+ * fallback so the theme still boots — degraded but working — when that
+ * dependency has not been installed. Each fallback is guarded with
+ * function_exists(); when the package is present, functions.php has already
+ * loaded it through vendor/autoload.php and its implementations win, so none
+ * of these run.
+ *
+ * Older sites may still carry the package as an mu-plugin rather than a
+ * Composer dependency. That path also loads before the theme, so these
+ * fallbacks stand down there too.
  *
  * @package Wonderpress Theme
  */
@@ -15,7 +20,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Warn administrators when the Wonderpress Core plugin is not active.
+ * Warn administrators when the theme's dependencies are not installed.
  *
  * @return void
  */
@@ -26,7 +31,7 @@ function wonderpress_core_missing_notice() {
 
 	printf(
 		'<div class="notice notice-warning"><p>%s</p></div>',
-		esc_html__( 'The Wonderpress Core plugin is not active. The Wonderpress theme is running in reduced-functionality mode: partials, custom navigation helpers and inline asset delivery are unavailable.', 'wonderpress' )
+		esc_html__( "The Wonderpress theme's dependencies are not installed, so it is running in reduced-functionality mode: partials, blocks, custom navigation helpers and inline asset delivery are unavailable. Run `composer install` in the theme directory.", 'wonderpress' )
 	);
 }
 add_action( 'admin_notices', 'wonderpress_core_missing_notice' );

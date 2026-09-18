@@ -1,0 +1,20 @@
+{
+    "name": "wndrfl/wonderpress-theme",
+    "description": "The Wonderpress theme.",
+    "type": "wordpress-theme",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.2",
+        "wndrfl/wonderpress-core": "^2.0"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/wndrfl/wonderpress-core.git"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}

@@ -52,9 +52,26 @@ spl_autoload_register(
 );
 
 /*
+ * Load this theme's Composer dependencies, chiefly wonderpress-core, which
+ * supplies the `wonder_*` helpers and the `Wonderpress_Core\Partials` classes
+ * the modules and templates below rely on.
+ *
+ * Guarded rather than required outright: a checkout whose `vendor` directory
+ * is missing should fall through to `inc/compat.php` and run degraded, which
+ * is exactly what that file exists for. A bare require_once here would turn a
+ * forgotten `composer install` into a white screen.
+ */
+$wonderpress_autoload = get_theme_file_path( 'vendor/autoload.php' );
+if ( is_readable( $wonderpress_autoload ) ) {
+	require_once $wonderpress_autoload;
+}
+unset( $wonderpress_autoload );
+
+/*
  * Load the theme modules in an explicit, deterministic order.
- * compat.php must load first: it provides fallbacks for the Wonderpress
- * Core plugin functions that the other modules and templates rely on.
+ * compat.php must load first: it provides fallbacks for the wonderpress-core
+ * functions that the other modules and templates rely on, for the case where
+ * the dependency above could not be loaded.
  */
 require_once get_theme_file_path( 'inc/compat.php' );
 require_once get_theme_file_path( 'inc/setup.php' );

@@ -23,6 +23,13 @@ package-lock.json
 !/package-lock.json
 composer.lock
 
+# The theme is a self-contained deployable unit: it carries its own Composer
+# manifest, lock file and vendor directory so a deploy needs no Composer step.
+# `composer.lock` above is unanchored and would otherwise swallow the theme's,
+# taking reproducibility with it. `/vendor` above is root-anchored and does not
+# reach the theme, so the theme's vendor directory is committed by default.
+!/wp-content/themes/*/composer.lock
+
 # wordpress specific
 wp-config.php
 wp-content/uploads/
