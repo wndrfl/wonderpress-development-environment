@@ -8,9 +8,10 @@
  * rather than a decision this theme makes. See that package's inc/assets.php,
  * and filter `wonderpress_asset_candidates` to change the bundle layout.
  *
- * style.css stays here on purpose: it is this theme's file, it carries the
- * accessibility baseline (skip link, .screen-reader-text) that core-generated
- * markup relies on, and it should still load when the package is missing.
+ * style.css stays here on purpose: it is this theme's file and it carries
+ * skip-link :focus styles. The .screen-reader-text hide rules live in Static
+ * Kit (`static/src/scss/lib/_utilities.scss`) and must be @use'd from every
+ * page entry. Do not restore a duplicate hide block in style.css.
  *
  * @package Wonderpress Theme
  */

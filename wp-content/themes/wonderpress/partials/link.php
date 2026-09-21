@@ -9,6 +9,8 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+
+$attrs = ( ! empty( $attributes ) && is_array( $attributes ) ) ? $attributes : array();
 ?>
 <a href="<?php echo esc_url( $url ); ?>"
 	<?php if ( ! empty( $classes ) ) : ?>
@@ -17,22 +19,15 @@ defined( 'ABSPATH' ) || exit;
 	<?php if ( ! empty( $title ) ) : ?>
 	title="<?php echo esc_attr( $title ); ?>"
 	<?php endif; ?>
-	<?php if ( ! empty( $open_in_new_tab ) ) : ?>
-	target="_blank" rel="noopener noreferrer"
-	<?php endif; ?>
 	<?php
-	if ( ! empty( $attributes ) && is_array( $attributes ) ) {
-		foreach ( $attributes as $attribute => $value ) {
-			// Attribute names come from developer input, not user input,
-			// but reject anything that is not a plain attribute name.
-			$attribute = strtolower( (string) $attribute );
-			if ( ! preg_match( '/^[a-z][a-z0-9\-]*$/', $attribute ) || 0 === strpos( $attribute, 'on' ) ) {
-				continue;
-			}
-			?>
-			<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
-			<?php
+	foreach ( $attrs as $attribute => $value ) {
+		$attribute = strtolower( (string) $attribute );
+		if ( ! preg_match( '/^[a-z][a-z0-9\-]*$/', $attribute ) || 0 === strpos( $attribute, 'on' ) ) {
+			continue;
 		}
+		?>
+		<?php echo esc_html( $attribute ); ?>="<?php echo esc_attr( $value ); ?>"
+		<?php
 	}
 	?>
 >

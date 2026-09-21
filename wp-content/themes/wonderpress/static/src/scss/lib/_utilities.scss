@@ -1,0 +1,15 @@
+// Accessibility utilities loaded on every page (imported from page entries).
+// Keep the WordPress class name so core-generated markup (search, comments,
+// pagination) and the theme skip-link stay hidden from sighted view.
+
+.screen-reader-text {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}

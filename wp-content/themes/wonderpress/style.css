@@ -19,22 +19,11 @@
 /*
  * The theme's real styles are compiled by Static Kit into static/dist and
  * enqueued per-template (see inc/assets.php). This file only carries the
- * theme metadata above plus the accessibility baseline below, which core-
- * generated markup (search forms, comment forms, pagination) relies on.
+ * theme metadata above plus skip-link focus styles. The visually-hidden
+ * clip-path rules for .screen-reader-text live in Static Kit
+ * (static/src/scss/lib/_utilities.scss) so they ship with every page bundle.
+ * Do not duplicate those hide rules here.
  */
-
-/* Visually hidden, but available to assistive technology. */
-.screen-reader-text {
-	border: 0;
-	clip-path: inset(50%);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute !important;
-	width: 1px;
-	word-wrap: normal !important;
-}
 
 /* Reveal the skip link when it receives keyboard focus. */
 .screen-reader-text:focus {
