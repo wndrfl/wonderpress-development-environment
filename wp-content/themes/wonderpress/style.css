@@ -20,8 +20,8 @@
  * The theme's real styles are compiled by Static Kit into static/dist and
  * enqueued per-template (see inc/assets.php). This file only carries the
  * theme metadata above plus skip-link focus styles. The visually-hidden
- * clip-path rules for .screen-reader-text live in Static Kit
- * (static/src/scss/lib/_utilities.scss) so they ship with every page bundle.
+ * clip-path rules for .screen-reader-text ship with Static Kit
+ * (static/src/scss/lib/_utilities.scss) and are in every page bundle already.
  * Do not duplicate those hide rules here.
  */
 
