@@ -75,4 +75,3 @@ unset( $wonderpress_autoload );
  */
 require_once get_theme_file_path( 'inc/compat.php' );
 require_once get_theme_file_path( 'inc/setup.php' );
-require_once get_theme_file_path( 'inc/assets.php' );
