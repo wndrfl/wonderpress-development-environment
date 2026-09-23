@@ -15,26 +15,3 @@
  * License: MIT
  * License URI: https://opensource.org/licenses/mit-license.php
  */
-
-/*
- * The theme's real styles are compiled by Static Kit into static/dist and
- * enqueued per-template (see inc/assets.php). This file only carries the
- * theme metadata above plus skip-link focus styles.
- */
-
-/* Reveal the skip link when it receives keyboard focus. */
-.screen-reader-text:focus {
-	background-color: #f1f1f1;
-	clip-path: none;
-	color: #21759b;
-	display: block;
-	font-size: 1rem;
-	height: auto;
-	left: 5px;
-	line-height: normal;
-	padding: 15px 23px 14px;
-	text-decoration: none;
-	top: 5px;
-	width: auto;
-	z-index: 100000;
-}
