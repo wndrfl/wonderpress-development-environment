@@ -10,6 +10,13 @@ node_modules
 wp-cli.yml
 wp-content/debug.log
 
+# Machine-local MCP host configs. `wonderpress agents write` pins absolute
+# Node / CLI / cwd paths; AGENTS.md and CLAUDE.md stay committed.
+.mcp.json
+.cursor/mcp.json
+.vscode/mcp.json
+.codex/config.toml
+
 # Misc extensions
 wp*~
 .DS_Store
