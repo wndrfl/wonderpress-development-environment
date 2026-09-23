@@ -9,9 +9,7 @@
  * and filter `wonderpress_asset_candidates` to change the bundle layout.
  *
  * style.css stays here on purpose: it is this theme's file and it carries
- * skip-link :focus styles. The .screen-reader-text hide rules ship with Static
- * Kit (`static/src/scss/lib/_utilities.scss`), which every generated page entry
- * already @uses. Do not restore a duplicate hide block in style.css.
+ * skip-link :focus styles.
  *
  * @package Wonderpress Theme
  */
