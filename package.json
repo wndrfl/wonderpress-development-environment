@@ -1,6 +1,7 @@
 {
   "name": "wonderpress-environment",
   "private": true,
+  "license": "MIT",
   "description": "Project-level tooling for a Wonderpress environment. The theme's own assets are built by Static Kit from wp-content/themes/wonderpress/static.",
   "scripts": {
     "env:start": "wp-env start",
