@@ -12,7 +12,7 @@ wonder_body_id( 'index' );
 get_header();
 ?>
 
-	<main id="main">
+	<main id="main" tabindex="-1">
 
 		<header class="page-header">
 			<h1 class="page-title">

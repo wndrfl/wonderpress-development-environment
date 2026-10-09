@@ -11,7 +11,7 @@ wonder_body_id( 'single' );
 get_header();
 ?>
 
-	<main id="main">
+	<main id="main" tabindex="-1">
 
 		<?php
 		if ( have_posts() ) :
