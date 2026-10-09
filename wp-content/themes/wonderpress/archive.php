@@ -23,7 +23,7 @@ wonder_body_id( $wonderpress_archive_body_id );
 get_header();
 ?>
 
-	<main id="main">
+	<main id="main" tabindex="-1">
 
 		<header class="page-header">
 			<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>

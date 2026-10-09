@@ -11,7 +11,7 @@ wonder_body_id( '404' );
 get_header();
 ?>
 
-	<main id="main">
+	<main id="main" tabindex="-1">
 
 		<section class="error-404">
 
